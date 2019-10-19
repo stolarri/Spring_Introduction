@@ -3,6 +3,7 @@ package pl.st.spring.spring_intro.controllers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,10 +17,12 @@ public class RegistrationController {
 
     private final UserRepository userRepository;
     private static final Logger log = LoggerFactory.getLogger(RegistrationController.class);
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public RegistrationController(UserRepository userRepository) {
+    public RegistrationController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping
@@ -34,9 +37,10 @@ public class RegistrationController {
             String firstName,
             String lastName
     ) {
+        String encodedPassword = passwordEncoder.encode(password);
         User user = new User();
         user.setUsername(username);
-        user.setPassword(password);
+        user.setPassword(encodedPassword);
         user.setFirst_name(firstName);
         user.setLast_name(lastName);
         user.setActive(true);
