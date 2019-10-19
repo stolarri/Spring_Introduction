@@ -1,5 +1,6 @@
 package pl.st.spring.spring_intro.model.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="users")
 public class User {
@@ -26,7 +28,7 @@ public class User {
     @Column(nullable = false, name = "last_name")
     private String last_name;
     @Column(nullable = false)
-    private String active;
+    private Boolean active;
 
     @Override
     public boolean equals(Object o) {
