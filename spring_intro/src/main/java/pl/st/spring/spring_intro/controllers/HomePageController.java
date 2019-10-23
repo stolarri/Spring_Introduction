@@ -25,6 +25,6 @@ public class HomePageController {
     public String prepareHomePage(Model model) {
         List<Advert> advertList = advertRepository.findAllByOrderByPostedDesc();
         model.addAttribute("adverts", advertList);
-        return "";
+        return "/WEB-INF/views/home-page.jsp";
     }
 }

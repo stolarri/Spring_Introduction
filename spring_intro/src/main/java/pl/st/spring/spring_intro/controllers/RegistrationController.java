@@ -48,7 +48,7 @@ public class RegistrationController {
         userRepository.save(user);
         log.info("Zapisany user: " + user);
 
-        return "redirect:/index.html";
+        return "redirect:/";
 
     }
 

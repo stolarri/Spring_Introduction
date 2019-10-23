@@ -24,15 +24,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/register").permitAll()
+                .antMatchers("/").permitAll()
                 .antMatchers("/login").anonymous()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/index.html")
+                .defaultSuccessUrl("/")
                 .and()
                 .logout()
-                .logoutSuccessUrl("/index.html");
+                .logoutSuccessUrl("/");
 
     }
     @Bean
